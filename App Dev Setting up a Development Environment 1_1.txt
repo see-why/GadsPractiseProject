@@ -1,0 +1,24 @@
+gcloud beta compute --project=qwiklabs-gcp-04-533782f37b70 instances create dev-instance --zone=us-central1-a --machine-type=e2-medium --subnet=default --network-tier=PREMIUM --maintenance-policy=MIGRATE --service-account=927922545310-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/cloud-platform --tags=http-server --image=debian-9-stretch-v20200902 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=dev-instance --reservation-affinity=any
+
+gcloud compute --project=qwiklabs-gcp-04-533782f37b70 firewall-rules create default-allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server
+
+
+sudo apt-get update
+sudo apt-get install git
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt install nodejs
+
+
+node -v
+git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+cd ~/training-data-analyst/courses/developingapps/nodejs/devenv/
+sudo node server/app.js
+
+#Ctrl + C
+
+npm install
+node list-gce-instances.js
+
+
+
+
